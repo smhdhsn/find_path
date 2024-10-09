@@ -1,19 +1,22 @@
+from model.state_factory import create_state_tree
+from search.search import find_goal_state
 from frontier.frontier import Frontier
-from model.state import State
 
-initial_state = State()
-frontier = Frontier(initial_state)
+goal="f"
 
-# initialize
+def main():
+    """
+    Main function to initialize the state tree, perform goal search, and display the result.
+    """
+    initial_state = create_state_tree()
+    frontier = Frontier(initial_state)
 
-# :start
+    result = find_goal_state(frontier, goal)
 
-# if the frontier is empty -> no solution
+    if result is None:
+        print("There is no solution")
+    else:
+        print(f"Found the solution {result.value}")
 
-# remove a node from frontier
-
-# if node contains goal state return the solution
-
-# expand, add more states to frontier
-
-# go to :start, repeat
+if __name__ == "__main__":
+    main()

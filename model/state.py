@@ -6,7 +6,7 @@ class State:
     A representation of a state in the search space.
     """
 
-    def __init__(self, next_states: Optional[List[State]]) -> None:
+    def __init__(self, value: str, next_states: Optional[List[State]]) -> None:
         """
         Initialize the State with next states.
 
@@ -15,11 +15,16 @@ class State:
 
         Raises:
             ValueError: If the provided list of states is presented and is not a list of instances of State.
+            ValueError: If the value is not provided or is an empty string.
         """
         if next_states is not None and not all(isinstance(state, State) for state in next_states):
             raise ValueError("Next states must be of type State")
 
+        if value is None or value == "":
+            raise ValueError("Value must be provided")
+
         self.next_states: List[State] = next_states
+        self.value: str = value
 
     def get_next(self) -> List[State]:
         """
@@ -45,11 +50,11 @@ class State:
         """
         return self.next_states is None or len(self.next_states) == 0
 
-    def is_goal(self) -> bool:
+    def is_goal(self, goal: str) -> bool:
         """
         Check if the state is a goal state.
 
         Returns:
             bool: True if the state is a goal state, False otherwise.
         """
-        pass
+        return self.value == goal

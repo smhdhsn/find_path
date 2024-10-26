@@ -7,4 +7,6 @@ def read_stdin(msg: str) -> str:
     """
     inp = input(msg)
 
+    print()
+
     return str(inp)

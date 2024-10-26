@@ -20,9 +20,9 @@ def main():
     result = find_goal_state(frontier, goal)
 
     if result is not None:
-        print(f"Found the solution {result.value}")
+        print(f"Found the solution!\nThe path to solution: ({result.get_path()})")
     else:
-        print("There is no solution")
+        print("There is no solution.")
 
 if __name__ == "__main__":
     main()

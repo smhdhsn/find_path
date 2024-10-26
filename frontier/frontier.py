@@ -39,14 +39,14 @@ class Frontier:
         if state not in self:
             self.storage.push(state)
 
-    def empty(self) -> bool:
+    def not_empty(self) -> bool:
         """
         Check if the frontier is empty.
 
         Returns:
             bool: True if the frontier is empty, False otherwise.
         """
-        return self.storage.empty()
+        return not self.storage.empty()
 
     def remove(self) -> State:
         """

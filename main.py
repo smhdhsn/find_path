@@ -1,4 +1,4 @@
-from frontier.frontier import Frontier
+from frontier.frontier import QueueFrontier
 
 from model.state_factory import create_state_tree
 from search.search import find_goal_state
@@ -9,7 +9,7 @@ def main():
     Main function to initialize the state tree, perform goal search, and display the result.
     """
     initial_state = create_state_tree()
-    frontier = Frontier(initial_state)
+    frontier = QueueFrontier(initial_state)
 
     goal = read_stdin("Enter a goal: ")
 

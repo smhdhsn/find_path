@@ -13,8 +13,10 @@ def find_goal_state(frontier: Frontier, goal: str) -> Optional[State]:
     Returns:
         Optional[State]: The goal state if found, else None.
     """
-    while not frontier.is_empty():
-        node = frontier.pop()
+    while not frontier.empty():
+        node = frontier.remove()
+
+        print(f"Node <{node.value}> has been removed from the frontier.")
 
         if node.is_goal(goal):
             return node

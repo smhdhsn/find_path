@@ -1,5 +1,5 @@
 from model.state import State
-from typing import Set
+from typing import List, Set
 
 class Frontier:
     """
@@ -20,24 +20,7 @@ class Frontier:
             raise ValueError("Initial state must be of type State")
 
         self.explored_states: Set[State] = set()
-        self.states: Set[State] = {initial_states}
-
-    def pop(self) -> State:
-        """
-        Removes a state from the frontier, adds it to explored states and returns the state.
-
-        Returns:
-            State: The last state in the frontier.
-
-        Raises:
-            IndexError: If the frontier is empty when attempting to pop.
-        """
-        if self.is_empty():
-            raise IndexError("Cannot pop from an empty frontier")
-
-        state = self.states.pop()
-        self.explored_states.add(state)
-        return state
+        self.states: List[State] = [initial_states]
 
     def push(self, state: State) -> None:
         """
@@ -53,9 +36,9 @@ class Frontier:
             raise ValueError("State must be of type State")
 
         if state not in self:
-            self.states.add(state)
+            self.states.append(state)
 
-    def is_empty(self) -> bool:
+    def empty(self) -> bool:
         """
         Check if the frontier is empty.
 
@@ -75,3 +58,51 @@ class Frontier:
             bool: True if the state is in the frontier or explored states, False otherwise.
         """
         return state in self.explored_states or state in self.states
+
+class StackFrontier(Frontier):
+    """
+    Handles exploration of the frontier in a FILO way like a stack.
+    """
+
+    def remove(self) -> State:
+        """
+        Removes a state from the frontier, adds it to explored states and returns the state.
+
+        Returns:
+            State: The last state in the frontier.
+
+        Raises:
+            IndexError: If the frontier is empty when attempting to remove.
+        """
+        if self.empty():
+            raise IndexError("Cannot remove from an empty frontier")
+
+        state = self.states[-1]
+        self.states = self.states[:-1]
+        self.explored_states.add(state)
+
+        return state
+
+class QueueFrontier(Frontier):
+    """
+    Handles exploration of the frontier in a FIFO way like a queue.
+    """
+
+    def remove(self) -> State:
+        """
+        Removes a state from the frontier, adds it to explored states and returns the state.
+
+        Returns:
+            State: The last state in the frontier.
+
+        Raises:
+            IndexError: If the frontier is empty when attempting to remove.
+        """
+        if self.empty():
+            raise IndexError("Cannot remove from an empty frontier")
+
+        state = self.states[0]
+        self.states = self.states[1:]
+        self.explored_states.add(state)
+
+        return state

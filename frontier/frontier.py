@@ -1,9 +1,9 @@
 from model.state import State
-from typing import List
+from typing import Set
 
 class Frontier:
     """
-    A container for states waiting to be explored.
+    A container for managing states and exploration of states.
     """
 
     def __init__(self, initial_states: State) -> None:
@@ -19,11 +19,12 @@ class Frontier:
         if not isinstance(initial_states, State):
             raise ValueError("Initial state must be of type State")
 
-        self.states: List[State] = [initial_states]
+        self.explored_states: Set[State] = set()
+        self.states: Set[State] = {initial_states}
 
     def pop(self) -> State:
         """
-        Remove and return the last state from the frontier.
+        Removes a state from the frontier, adds it to explored states and returns the state.
 
         Returns:
             State: The last state in the frontier.
@@ -34,7 +35,9 @@ class Frontier:
         if self.is_empty():
             raise IndexError("Cannot pop from an empty frontier")
 
-        return self.states.pop()
+        state = self.states.pop()
+        self.explored_states.add(state)
+        return state
 
     def push(self, state: State) -> None:
         """
@@ -49,7 +52,8 @@ class Frontier:
         if not isinstance(state, State):
             raise ValueError("State must be of type State")
 
-        self.states.append(state)
+        if state not in self:
+            self.states.add(state)
 
     def is_empty(self) -> bool:
         """
@@ -58,4 +62,16 @@ class Frontier:
         Returns:
             bool: True if the frontier is empty, False otherwise.
         """
-        return len(self.states) == 0
+        return not self.states
+
+    def __contains__(self, state: State) -> bool:
+        """
+        Check if a state is either in the frontier or has been explored.
+
+        Args:
+            state (State): The state to check.
+
+        Returns:
+            bool: True if the state is in the frontier or explored states, False otherwise.
+        """
+        return state in self.explored_states or state in self.states

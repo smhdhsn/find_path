@@ -86,6 +86,24 @@ class State:
         """
         return self.value == goal
 
+    def get_path_cost(self) -> int:
+        """
+        Fetch the path cost of this state.
+
+        Returns:
+            str: The path cost to this state.
+        """
+        path_cost: int = 0
+        state: State = self
+
+        while state is not None:
+            state = state.parent_state
+
+            if state is not None:
+                path_cost += 1
+
+        return path_cost
+
     def get_path(self) -> str:
         """
         Returns the path from root state to this state.
@@ -94,12 +112,12 @@ class State:
             str: The path from root state to this state.
         """
         state: State = self
-        path: str = self.value
+        path: str = state.value
 
-        while True:
+        while state is not None:
             state = state.parent_state
 
-            if state is None:
-                return path
+            if state is not None:
+                path = f"{state.value} ->> {path}"
 
-            path = f"{state.value} ->> {path}"
+        return path

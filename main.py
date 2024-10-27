@@ -20,7 +20,13 @@ def main():
     result = find_goal_state(frontier, goal)
 
     if result is not None:
-        print(f"Found the solution!\nPath: {result.get_path()}\nCost: {result.get_path_cost()}")
+        print(
+            f"Found the solution!",
+            f"Path: {result.get_path()}",
+            f"Cost: {result.get_path_cost()}",
+            f"Explored: {len(frontier.explored_states)}",
+            sep="\n",
+        )
     else:
         print("There is no solution.")
 

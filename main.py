@@ -1,7 +1,7 @@
 from frontier.frontier import Frontier
 from storage.queue import Queue
 
-from model.state_factory import create_state_tree
+from factory.state import create_state_tree
 from search.search import find_goal_state
 from input.stdin import read_stdin
 

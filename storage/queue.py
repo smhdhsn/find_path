@@ -1,4 +1,4 @@
-from storage.storage import Storage
+from storage.abstract import Storage
 from model.state import State
 from collections import deque
 from typing import Deque

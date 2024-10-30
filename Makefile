@@ -1,4 +1,4 @@
 .PHONY: run
 
 run:
-	@python main.py
+	@python -m main

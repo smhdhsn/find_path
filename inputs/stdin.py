@@ -9,7 +9,7 @@ def read_stdin(msg: str) -> str:
     Returns:
         str: The input from stdin.
     """
-    inp = input(msg)
+    inp = input(msg).strip()
 
     print()
 

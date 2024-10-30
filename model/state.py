@@ -112,12 +112,12 @@ class State:
             str: The path from root state to this state.
         """
         state: State = self
-        path: str = state.value
+        path: str = f"({state.value})"
 
         while state is not None:
             state = state.parent_state
 
             if state is not None:
-                path = f"{state.value} ->> {path}"
+                path = f"({state.value}) ->> {path}"
 
         return path

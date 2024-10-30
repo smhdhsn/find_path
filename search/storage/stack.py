@@ -1,16 +1,19 @@
-from storage.abstract import Storage
-from model.state import State
-from collections import deque
-from typing import Deque
+"""
+Stack storage implementation for search algorithms in the find_path application.
+"""
 
-class Queue(Storage):
+from typing import List
+from models import State
+from .abstract import Storage
+
+class Stack(Storage):
     """
-    Queue-based storage mechanism for the frontier (FIFO).
+    Stack-based storage mechanism for the frontier (LIFO).
     """
 
     def __init__(self, initial_state: State) -> None:
         """
-        Initialize the queue storage with empty storage of type deque.
+        Initialize the stack storage with empty storage of type list.
 
         Args:
             initial_state (State): Contains the initial state to explore.
@@ -21,7 +24,7 @@ class Queue(Storage):
         if not isinstance(initial_state, State):
             raise ValueError("Initial state must be of type State")
 
-        self.states: Deque[State] = deque([initial_state])
+        self.states: List[State] = [initial_state]
 
     def push(self, state: State) -> None:
         """
@@ -45,7 +48,7 @@ class Queue(Storage):
         if self.empty():
             raise IndexError("Cannot remove from empty storage")
 
-        return self.states.popleft()
+        return self.states.pop()
 
     def empty(self) -> bool:
         """

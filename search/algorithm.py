@@ -1,6 +1,9 @@
-from frontier.frontier import Frontier
-from model.state import State
+"""
+Contains search algorithm implementations for the find_path application.
+"""
 from typing import Optional
+from search.frontier import Frontier
+from models import State
 
 def find_goal_state(frontier: Frontier, goal: str) -> Optional[State]:
     """
@@ -24,3 +27,5 @@ def find_goal_state(frontier: Frontier, goal: str) -> Optional[State]:
 
             for node in next_nodes:
                 frontier.push(node)
+
+    return None

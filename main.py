@@ -1,9 +1,11 @@
-from frontier.frontier import Frontier
-from storage.queue import Queue
+"""
+Entry point for the find_path application.
+"""
 
-from factory.state import create_state_tree
-from search.search import find_goal_state
-from input.stdin import read_stdin
+from search.storage import Queue
+from search import Frontier, find_goal_state
+from problems import create_state_tree
+from inputs import read_stdin
 
 def main():
     """
@@ -21,7 +23,7 @@ def main():
 
     if result is not None:
         print(
-            f"Found the solution!",
+            "Found the solution!",
             f"Path: {result.get_path()}",
             f"Cost: {result.get_path_cost()}",
             f"Explored: {len(frontier.explored_states)}",

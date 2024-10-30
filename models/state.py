@@ -1,3 +1,7 @@
+"""
+Defines the State class representing nodes in the search space for the find_path application.
+"""
+
 from __future__ import annotations
 from typing import List
 

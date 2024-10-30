@@ -1,5 +1,9 @@
+"""
+Abstract storage class for search algorithms in the find_path application.
+"""
+
 from abc import ABC, abstractmethod
-from model.state import State
+from models import State
 
 class Storage(ABC):
     """
@@ -14,7 +18,6 @@ class Storage(ABC):
         Args:
             state (State): The state to add.
         """
-        pass
 
     @abstractmethod
     def remove(self) -> State:
@@ -27,7 +30,6 @@ class Storage(ABC):
         Raises:
             IndexError: If the storage is empty when attempting to remove.
         """
-        pass
 
     @abstractmethod
     def empty(self) -> bool:
@@ -37,7 +39,6 @@ class Storage(ABC):
         Returns:
             bool: True if the storage is empty, False otherwise.
         """
-        pass
 
     @abstractmethod
     def __contains__(self, state: State) -> bool:
@@ -50,4 +51,3 @@ class Storage(ABC):
         Returns:
             bool: True if the state is in the storage, False otherwise.
         """
-        pass

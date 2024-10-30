@@ -1,6 +1,10 @@
-from storage.abstract import Storage
-from model.state import State
+"""
+Manages the frontier for search algorithms in the find_path application.
+"""
+
 from typing import Set
+from search.storage import Storage
+from models import State
 
 class Frontier:
     """

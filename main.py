@@ -11,6 +11,7 @@ def main():
     """
     Main function to initialize the state tree, perform goal search, and display the result.
     """
+
     initial_state = create_state_tree()
 
     storage = Queue(initial_state)

@@ -1,6 +1,7 @@
 """
 Contains search algorithm implementations for the find_path application.
 """
+
 from typing import Optional
 from search.frontier import Frontier
 from models import State
@@ -16,6 +17,7 @@ def find_goal_state(frontier: Frontier, goal: str) -> Optional[State]:
     Returns:
         Optional[State]: The goal state if found, else None.
     """
+
     while frontier.not_empty():
         node = frontier.remove()
 

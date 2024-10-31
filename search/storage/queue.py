@@ -22,6 +22,7 @@ class Queue(Storage):
         Raises:
             ValueError: If the provided state is not an instance of State.
         """
+
         if not isinstance(initial_state, State):
             raise ValueError("Initial state must be of type State")
 
@@ -34,6 +35,7 @@ class Queue(Storage):
         Args:
             state (State): The state to add.
         """
+
         self.states.append(state)
 
     def remove(self) -> State:
@@ -46,6 +48,7 @@ class Queue(Storage):
         Raises:
             IndexError: If the storage is empty when attempting to remove.
         """
+
         if self.empty():
             raise IndexError("Cannot remove from empty storage")
 
@@ -58,6 +61,7 @@ class Queue(Storage):
         Returns:
             bool: True if the storage is empty, False otherwise.
         """
+
         return not self.states
 
     def __contains__(self, state: State) -> bool:
@@ -70,4 +74,5 @@ class Queue(Storage):
         Returns:
             bool: True if the state is in the storage, False otherwise.
         """
+
         return state in self.states

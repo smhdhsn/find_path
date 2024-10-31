@@ -11,6 +11,7 @@ def create_state_tree() -> State:
     Returns:
         State: The root state of the tree.
     """
+
     # First level.
     state_a = State("a")
 

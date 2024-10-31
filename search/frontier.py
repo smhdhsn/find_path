@@ -21,6 +21,7 @@ class Frontier:
         Raises:
             ValueError: If the provided storage is not an instance of Storage.
         """
+
         if not isinstance(storage, Storage):
             raise ValueError("Input storage must be of type Storage")
 
@@ -37,6 +38,7 @@ class Frontier:
         Raises:
             ValueError: If the provided state is not an instance of State.
         """
+
         if not isinstance(state, State):
             raise ValueError("State must be of type State")
 
@@ -50,6 +52,7 @@ class Frontier:
         Returns:
             bool: True if the frontier is empty, False otherwise.
         """
+
         return not self.storage.empty()
 
     def remove(self) -> State:
@@ -62,6 +65,7 @@ class Frontier:
         Raises:
             IndexError: If the frontier is empty when attempting to remove.
         """
+
         state = self.storage.remove()
         self.explored_states.add(state)
         return state
@@ -76,4 +80,5 @@ class Frontier:
         Returns:
             bool: True if the state is in the frontier or explored states, False otherwise.
         """
+
         return state in self.explored_states or state in self.storage

@@ -20,6 +20,7 @@ class State:
         Raises:
             ValueError: If the value is not provided or is an empty string.
         """
+
         if value is None or value == "":
             raise ValueError("Value must be provided")
 
@@ -37,6 +38,7 @@ class State:
         Raises:
             ValueError: If the provided list of states is not a list of instances of State.
         """
+
         if not all(isinstance(state, State) for state in next_states):
             raise ValueError("Next states must be of type State")
 
@@ -52,6 +54,7 @@ class State:
         Raises:
             ValueError: If the provided state is not a list of instance of State.
         """
+
         if not isinstance(parent_state, State):
             raise ValueError("Parent state must be of type State")
 
@@ -67,6 +70,7 @@ class State:
         Raises:
             ValueError: If no next states are available.
         """
+
         if self.next_states is None:
             raise ValueError("No next states available")
 
@@ -79,6 +83,7 @@ class State:
         Returns:
             bool: True if the state is a leaf node, False otherwise.
         """
+
         return len(self.next_states) == 0
 
     def is_goal(self, goal: str) -> bool:
@@ -88,6 +93,7 @@ class State:
         Returns:
             bool: True if the state is a goal state, False otherwise.
         """
+
         return self.value == goal
 
     def get_path_cost(self) -> int:
@@ -97,6 +103,7 @@ class State:
         Returns:
             str: The path cost to this state.
         """
+
         path_cost: int = 0
         state: State = self
 
@@ -115,6 +122,7 @@ class State:
         Returns:
             str: The path from root state to this state.
         """
+
         state: State = self
         path: str = f"({state.value})"
 
